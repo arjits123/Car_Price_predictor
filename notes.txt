@@ -1,0 +1,53 @@
+# Agenda 
+
+1. Setting up the GitHub Repository
+- New environemnt setup
+- setup.py
+- requirements.txt
+
+
+-> Various Commands for Terminal 
+
+1. Creating a new environment - conda create -p venv python==3.8 -y
+
+2. Activate the environment -conda activate venv/
+
+3. Initialise git - git init
+
+4. Add readme file - git add README.md
+
+5. Commit the project - git commit -m "first commit"
+
+6. Check out branch to main before pushing the file to git - git branch -M main
+
+7. Add origin so that it is in sync - git remote add origin https://github.com/arjits123/Car_Price_predictor.git
+
+8. Sync username and email with gitglobal.com:
+
+	git config --global user.name "arjits123"
+	git config --global user.email arjitpkt96@gmail.com
+
+9. git push -u origin main
+
+10. git pull 
+
+
+
+git status
+git remote -v
+
+
+Q. - What is setup.py file 
+Ans. - In this, the setup.py will be responsible for creating my machine learning application as package.
+
+
+
+-- We will create a folder Components in which we will do 
+1. data ingestion: import data from different data source
+2. data transformation: transform the data, like how to do one hot encoding, remove null values, etc
+3. model trainer: train the model using different ML algorithms
+
+
+In source folder create 2 other files like logger.py for logging, utils.py for utilities
+
+
