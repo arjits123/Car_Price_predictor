@@ -9,11 +9,6 @@ from dataclasses import dataclass
 import numpy as np
 import pandas as pd
 
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.compose import ColumnTransformer
-from sklearn.model_selection import train_test_split
-
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
 from src.exception import CustomException
@@ -24,6 +19,9 @@ from src.utils import save_object
 # Creat this class to get any type of input required to the data transformation component
 class DataCleanConfig:
     clean_data_path: str = os.path.join('artifacts', 'clean_data.csv')
+    
+class DataCleaner:
+    data_cleaner_config_path= os.path.join('artifacts', 'cleaner.pkl')
     
 """
 Data quality issues
@@ -40,6 +38,7 @@ Data quality issues
 class DataCleaning:
     def __init__(self):
         self.data_clean_config = DataCleanConfig()
+        self.clean_config = DataCleaner()
 
     def data_cleaning(self, raw_path):
         try:
@@ -78,6 +77,11 @@ class DataCleaning:
 
             os.makedirs(os.path.dirname(self.data_clean_config.clean_data_path), exist_ok = True)
             df.to_csv(self.data_clean_config.clean_data_path, index=False, header=True)
+
+            save_object(
+                file_path = self.clean_config.data_cleaner_config_path,
+                obj = df
+            )
 
             logging.info('Cleaned data file is created') #logging
 

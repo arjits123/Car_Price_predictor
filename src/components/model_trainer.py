@@ -42,7 +42,8 @@ class ModelTrainer:
             ohe = OneHotEncoder()
             ohe.fit(X[categorical_col])
             column_transform = make_column_transformer((OneHotEncoder(categories = ohe.categories_),categorical_col),remainder='passthrough')
-            
+
+
             logging.info('Made Column transformer')
 
             scores = []
@@ -50,7 +51,7 @@ class ModelTrainer:
 
                 X_train, X_test, y_train, y_test = train_test_split(X,y,test_size = 0.1, random_state = i)
 
-                model = RandomForestRegressor()
+                model = LinearRegression()
     
                 pipe = make_pipeline(column_transform, model)
                 fitted_pipe = pipe.fit(X_train, y_train)
